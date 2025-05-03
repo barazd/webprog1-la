@@ -12,7 +12,7 @@ class Router
     protected $routes = [];
 
     // 
-    public function __construct()
+    public function __destruct()
     {
         $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
         $query = parse_url($_SERVER['REQUEST_URI'], PHP_URL_QUERY);
@@ -46,11 +46,11 @@ class Router
     }
 
     // Method alapú regisztráció
-    public function get(string $route, Controller $controller, string $action): void
+    public function get(string $route, string $controller, string $action): void
     {
         $this->registerRoute('GET', $route, $controller, $action);
     }
-    public function post(string $route, Controller $controller, string $action): void
+    public function post(string $route, string $controller, string $action): void
     {
         $this->registerRoute('POST', $route, $controller, $action);
     }

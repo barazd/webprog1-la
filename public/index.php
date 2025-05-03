@@ -2,4 +2,6 @@
 
 require_once '../config.php';
 
-print 'hello';
+require_once '../autoload.php';
+
+require_once '../routes.php';

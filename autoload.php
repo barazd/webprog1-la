@@ -4,19 +4,32 @@
  * Az összes app mappában lévő fájl autoload-olása
  */
 
-spl_autoload_register(function ($class): bool {
+define('CLASS_REPLACE', [
+    '\\' => DIRECTORY_SEPARATOR,
+    'App' => 'app'
+]);
+
+spl_autoload_register(function ($class): bool
+{
     // Mappák és almappák
-    $directories = glob(__DIR__ . '/app/*', GLOB_ONLYDIR);
+    //$directories = glob(__DIR__ . '/*', GLOB_ONLYDIR);
 
     // Végigiterálunk
     // TODO: ha sok időm lesz, akkor cache
-    foreach ($directories as $directory) {
-        $filename = str_replace('\\', DIRECTORY_SEPARATOR, $directory) . DIRECTORY_SEPARATOR . $class . '.php';
-        // Ha olvasható a fájl
-        if (is_readable($filename)) {
-            require_once $filename;
-            break;
-        }
+
+    $filename = __DIR__ . DIRECTORY_SEPARATOR . $class . '.php';
+
+    foreach ( CLASS_REPLACE as $search => $replace)
+    {
+        $filename = str_replace($search, $replace, $filename);
     }
-    return true;
+
+    // Ha olvasható a fájl
+    if (is_readable($filename)) {
+        require_once $filename;
+        return true;
+    }
+    else {
+        throw new \Exception(message: '500, az osztály nem betölthető: ' . $filename);
+    }
 });

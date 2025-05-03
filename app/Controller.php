@@ -11,7 +11,7 @@ class Controller
     // View-ok egyszerű betöltése
     protected function view(string $name, array $data = []): void
     {
-        $filename = 'Views/' . $name . '.php';
+        $filename = __DIR__ . DIRECTORY_SEPARATOR . 'Views' . DIRECTORY_SEPARATOR . $name . '.php';
 
         if (is_readable($filename)) {
             extract($data);
