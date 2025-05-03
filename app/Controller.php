@@ -1,0 +1,27 @@
+<?php
+
+namespace App;
+
+/**
+ * CONTROLLER
+ * Ez az ősosztály a kontrollerekhez
+ */
+class Controller
+{
+    // View-ok egyszerű betöltése
+    protected function view(string $name, array $data = []): void
+    {
+        $filename = 'Views/' . $name . '.php';
+
+        if (is_readable($filename)) {
+            extract($data);
+
+            include_once $filename;
+        }
+        else
+        {
+            throw new \Exception(message: '500, a view nem található: ' . $filename);
+        }
+        
+    }
+}
