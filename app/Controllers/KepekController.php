@@ -6,13 +6,13 @@ use App\Controller;
 use App\Router;
 
 /**
- * Kezdőlap controller-je
+ * Képek oldal controller-je
  */
-class KezdolapController extends Controller
+class KepekController extends Controller
 {
     public function index(): void
     {
         $router = new Router();
-        $this->view('kezdolap', ['route' => $router->getRoute()]);
+        $this->view('kepek', ['route' => $router->getRoute()]);
     }
 }

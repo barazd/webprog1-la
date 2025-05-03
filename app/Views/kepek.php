@@ -2,7 +2,7 @@
 
     <div class="content">
         <div class="box">
-            <h2>Kezdőlap</h2>
+            <h2>Képek</h2>
             <p>Ide jön majd a tartalom...</p>
             <p><a href="https://github.com/barazd/webprog1-la" target="_blank">GitHub</a></p>
         </div>

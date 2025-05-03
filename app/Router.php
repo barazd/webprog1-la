@@ -11,8 +11,17 @@ class Router
     // Ebben tároljuk le az útvonalakat
     protected $routes = [];
 
+    protected $route = [];
+
+    public function __construct()
+    {
+        $this->route['path'] = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+        $this->route['query'] = parse_url($_SERVER['REQUEST_URI'], PHP_URL_QUERY);
+        $this->route['method'] = $_SERVER['REQUEST_METHOD'];
+    }
+
     // 
-    public function __destruct()
+    public function init(): void
     {
         $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
         $query = parse_url($_SERVER['REQUEST_URI'], PHP_URL_QUERY);
@@ -53,5 +62,10 @@ class Router
     public function post(string $route, string $controller, string $action): void
     {
         $this->registerRoute('POST', $route, $controller, $action);
+    }
+
+    public function getRoute(): array
+    {
+        return $this->route;
     }
 }

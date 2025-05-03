@@ -4,9 +4,14 @@
  * ÚTVONALAK
  */
 
- use App\Controllers\KezdolapController;
- use App\Router;
+use App\Controllers\KepekController;
+use App\Controllers\KezdolapController;
+use App\Router;
 
- $router = new Router();
+$router = new Router();
 
- $router->get('/', KezdolapController::class, 'index');
+$router->get('/', KezdolapController::class, 'index');
+
+$router->get('/kepek', KepekController::class, 'index');
+
+$router->init();
