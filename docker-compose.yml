@@ -1,0 +1,31 @@
+services:
+    caddy:
+        container_name: caddy
+        image: caddy:latest
+        build:
+          dockerfile: deployment/caddy.Dockerfile
+        volumes:
+            - storage:/var/www/html/public/storage
+        networks:
+            - app
+        ports:
+            - 8080:80
+
+    php:
+        container_name: php
+        image: php:8.4-fpm
+        build:
+          dockerfile: deployment/php.Dockerfile
+        volumes:
+            - storage:/var/www/html/public/storage
+        networks:
+            - app
+        ports:
+            - 9000:9000
+
+volumes:
+    storage:
+
+networks:
+    app:
+        name: app
