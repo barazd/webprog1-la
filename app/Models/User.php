@@ -9,17 +9,19 @@ use App\Model;
  */
 class User extends Model
 {
-    private $protected = [
+    protected $protected = [
         'password'
     ];
 
+    public static $table = 'users';
+
     public function verifyPassword($password): bool
     {
-        return password_verify($password, $this->password);
+        return password_verify($password, $this->attributes['password']);
     }
 
-    private function hashPassword($password): string
+    public function hashPassword(): void
     {
-        return password_hash($password, PASSWORD_DEFAULT);
+        $this->attributes['password'] = password_hash($this->attributes['password'], PASSWORD_DEFAULT);
     }
 }

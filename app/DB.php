@@ -31,19 +31,13 @@ abstract class DB
             
             $query = $pdo->prepare($sql);
 
-            foreach ($params as $key => $value) {
-                $query->bindParam($key, $value, gettype($value) === 'integer' ? PDO::PARAM_INT : PDO::PARAM_STR);
-            }
-
-            //$query->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-
-            $query->execute();
+            $query->execute($params);
 
             return $query->fetch(PDO::FETCH_ASSOC);
         }
         catch (PDOException $e)
         {
-            throw new \Exception('500, hiba a lekérdezésben: ' . $e->getMessage());
+            throw new \Exception('500, hiba a lekérdezésben: ' . $e->getMessage() . ', lekérdezés: ' . $query->queryString);
         }
         
     }
