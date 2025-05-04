@@ -1,0 +1,403 @@
+/* Nagyon alap CSS reset, hogy ne őrüljek meg */
+
+* {
+    margin: 0;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Alap dizájn */
+html, body {
+    background: slategray;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    height: 100vh;
+}
+
+.wrapper {
+    min-height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+
+header {
+    background: darkslategray;
+    color: azure;
+}
+header .header {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+}
+header h1 {
+    font-size: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px dashed slategray;
+}
+header nav ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    gap: .3rem;
+}
+header nav ul li a {
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: azure;
+    padding: .3rem .7rem;
+}
+header nav ul li a.active {
+    background: black;
+    color: white;
+    font-weight: bold;
+    border-radius: 50vh;
+}
+header nav ul li a:hover {
+    background: darkcyan;
+    color: white;
+    border-radius: 50vh;
+}
+header nav ul li a.newpage::after {
+    content: '';
+    display: block;
+    background-color: whitesmoke;
+    mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="12" width="12" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none" /><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z" fill="currentColor" /></svg>');
+    width: 12px;
+    height: 12px;
+    margin-left: .3rem;
+}
+
+section {
+    display: flex;
+}
+section .section {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+section .content {
+    grid-column: span 3;
+}
+section aside {
+    border-left: 1px solid darkslategray;
+}
+
+footer {
+    font-size: .8rem;
+    background: darkslategray;
+    color: azure;
+}
+footer .footer { 
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+}
+footer .by {
+    background: black;
+    color: white;
+    font-weight: bold;
+    padding: .2rem .5rem;
+    border-radius: 50vh;
+}
+
+.mw-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Egyéb elemek */
+.box {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: azure;
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: .5rem;
+}
+.box h2 {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+}
+
+/* Táblázat feladat */
+.table th, .table td {
+    padding: .3em .5em;
+    border-bottom: 1px solid lightgray;
+}
+.table tr:last-child td {
+    border-bottom: none;
+}
+.table thead th {
+    text-align: left;
+    vertical-align: middle;
+}
+.table thead th.sortable:hover {
+    background-color: lightgray;
+    cursor: pointer;
+}
+.table thead th.sortable::after {
+    content: '';
+    display: inline-block;
+    background-color: gray;
+    mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M4.854 2.146a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L4 3.707V13.5a.5.5 0 0 0 1 0V3.707l2.146 2.147a.5.5 0 1 0 .708-.708zm6.299 11.714a.5.5 0 0 0 .694 0l3-2.9a.5.5 0 1 0-.694-.72L12 12.321v-9.82a.5.5 0 0 0-1 0v9.82l-2.152-2.08a.5.5 0 1 0-.696.718z"/></svg>');
+    width: 16px;
+    height: 16px;
+    margin-left: .3rem;
+}
+.table thead th.sortable.asc::after {
+    mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M13 1.5a.5.5 0 0 0-1 0v11.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0-.708-.708L13 13.293zM2.5 3a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1zm2 3a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zM6 9.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5"/></svg>');
+    background-color: black;
+}
+.table thead th.sortable.desc::after {
+    mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M13 14.5a.5.5 0 0 1-1 0V2.707l-1.146 1.147a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L13 2.707zM2.5 13a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1zm2-3a.5.5 0 0 1 0-1h5a.5.5 0 0 1 0 1zM6 6.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 0-1h-3a.5.5 0 0 0-.5.5"/></svg>');
+    background-color: black;
+}
+.table tbody td code {
+    font-size: .7rem;
+    background-color: lightcyan;
+    padding: .1rem .4rem;
+    border-radius: 50vh;
+}
+.table td.buttons {
+    display: flex;
+    gap: .3rem;
+    justify-content: end;
+    
+}
+.table td.buttons button {
+    display: block;
+    border: 1px solid dimgray;
+    border-radius: .3rem;
+    padding: .2rem .3rem;
+}
+.table td.buttons button.item-delete {
+    color: red;
+}
+
+.filter {
+    border-top: 1px solid gray;
+    padding-top: 1rem;
+}
+.filter form {
+    display: flex;
+    gap: .3rem;
+    align-items: center;
+}
+.filter input, .filter select, .filter button {
+    display: block;
+    border: 1px solid dimgray;
+    border-radius: .3rem;
+    padding: .3rem .6rem;
+}
+
+.modal-wrapper {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+.modal-wrapper.hidden {
+    display: none;
+}
+.modal-wrapper::before {
+    position: absolute;
+    content: '';
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+    height: inherit;
+    width: inherit;
+}
+.modal-wrapper .box {
+    min-width: 500px;
+    max-width: 800px;
+    z-index: 12;
+}
+.modal-wrapper .box form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.form-value {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 1rem 2rem;
+}
+.form-value .label  {
+    grid-column: span 2 / span 2;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-weight: bold;
+}
+.form-value .input {
+    grid-column: span 3 / span 3;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+.form-value .input input, .form-value .input select {
+    display: block;
+    border: 1px solid dimgray;
+    border-radius: .3rem;
+    padding: .3rem .6rem;
+    width: 100%;
+}
+.form-value .input button {
+    display: block;
+    border: 1px solid black;
+    background: darkslategray;
+    color: white;
+    border-radius: .3rem;
+    padding: .3rem .6rem;
+    align-self: flex-end;
+}
+.form-value .input input:read-only {
+    background: lightgray;
+    color: dimgray;
+    border-color: darkgray;
+}
+
+/* ChartJs feladat */
+
+#table th, #table td {
+    padding: .3em .5em;
+    border-bottom: 1px solid lightgray;
+}
+#table tr:last-child td {
+    border-bottom: none;
+}
+#table thead th {
+    text-align: left;
+    vertical-align: middle;
+}
+
+/* HTML5 feladat */
+.dnd-wrapper {
+    display: flex;
+    gap: 4rem;
+    justify-content: space-between;
+}
+.dnd-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(5rem, 1fr));
+    grid-template-rows: masonry;
+    place-content: space-around;
+    padding: 1rem;
+    gap: 1rem;
+    width: 100%;
+    aspect-ratio : 1 / 1;
+    border: 4px dashed lightgray;
+    border-radius: 2rem;
+}
+.draggable {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: darkslateblue;
+    color: white;
+    font-weight: bold;
+    font-size: 2rem;
+    width: 5rem;
+    height: 5rem;
+    border-radius: .5rem;
+}
+.draggable:hover {
+    background: purple;
+    cursor: grab;
+}
+.draggable.dragging {
+    background: navy;
+    cursor: grabbing !important;
+}
+
+#canvas-result {
+    background: white;
+    width: 100%;
+    aspect-ratio: 2 / 1;
+}
+#svg-result {
+    background: white;
+    width: 100%;
+    aspect-ratio: 2 / 1;
+}
+
+/* OOJS feladat */
+#todo {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid lightgray;
+}
+#todo .task {
+    display: flex;
+    justify-content: stretch;
+    gap: 1rem;
+    align-items: center;
+    padding: .5rem 0;
+    border-bottom: 1px solid lightgray;
+}
+#todo .task input, #todo .task span, #todo .task button {
+    display: flex;
+    flex: none;
+}
+#todo .task span {
+    flex-grow: 1;
+    font-size: 1.2rem;
+}
+#todo .task button.delete-task {
+    font-size: .8rem;
+    color: red;
+    padding: .2rem .4rem;
+    border: 1px solid dimgray;
+    border-radius: .5rem;
+}
+
+/* AJAX feladat */
+#toast {
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: darkgray;
+    color: black;
+    text-align: center;
+    border-radius: .5rem;
+    padding: 1rem 2rem;
+    position: fixed;
+    z-index: 20;
+    left: 50%;
+    bottom: 2rem;
+}
+
+#toast.show {
+    visibility: visible;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+#toast.success {
+    background: lightgreen;
+    color: darkgreen;
+}
+#toast.error {
+    background: lightsalmon;
+    color: darkred;
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
