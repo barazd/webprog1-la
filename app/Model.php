@@ -3,6 +3,7 @@
 namespace App;
 
 use App\DB;
+use Exception;
 
 /**
  * MODEL
@@ -27,21 +28,30 @@ abstract class Model
         $this->attributes = $attributes;
     }
 
+    // Attribútum alapján hívunk be modellt
+    public static function findBy(string $key, int|string $value): self | bool
+    {
+        $sql = 'SELECT * FROM users WHERE ' . $key . ' = :' . $key;
+
+        if ($data = DB::query($sql, [':' . $key => $value]))
+        {
+            return new static($data);
+        }
+        else
+        {
+            return false;
+        }    
+    }
+
     // ID alapján hívunk be modellt
     public static function find(int | string $id): self
-    {
-        $sql = 'SELECT * FROM users WHERE id = :id';
-
-        $data = DB::query($sql, [':id' => $id]);
-
-        $model = new static($data);
-        
-        return $model;
+    {        
+        return self::findBy('id', $id);
     }
 
     // Hozzáférés a nem védett attribútumokhoz
     public function __get($key): mixed
     {
-        return in_array($key, $this->protected) ? false : $this->attributes[$key];
+        return array_key_exists($key, $this->attributes) && in_array($key, $this->protected) ? null : $this->attributes[$key]; 
     }
 }

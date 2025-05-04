@@ -32,11 +32,25 @@ class Router
             $controller = $this->routes[$method][$path]['controller'];
             $action = $this->routes[$method][$path]['action'];
 
+            // Adataok metódustól függően
+            if ($method === 'GET' && !empty($query))
+            {
+                parse_str($query, $data);
+            }
+            elseif ($method === 'POST' && !empty($_POST))
+            {
+                $data = $_POST;
+            }
+            else
+            {
+                $data = null;
+            }
+
             // Ha létezik ilyen controller osztály
             if (class_exists($controller))
             {
                 $controller = new $controller();
-                $controller->$action();
+                $controller->$action($data);
             }
             else
             {
