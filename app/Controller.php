@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Models\User;
+
 /**
  * CONTROLLER
  * Ez az ősosztály a kontrollerekhez
@@ -15,6 +17,17 @@ abstract class Controller
 
         // TODO: route és authentikált adatok injektálása ITT
         $data['route'] = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+
+        $session = new Session();
+        if($session->isAuthenticated())
+        {
+            $data['auth']['authenticated'] = true;
+            $data['auth']['user'] = $session->getAuthenticatedUser()->getAttributes();
+        }
+        else
+        {
+            $data['auth']['authenticated'] = false;
+        }
 
         if (is_readable($filename)) {
             extract($data);

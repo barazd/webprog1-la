@@ -24,4 +24,5 @@ class User extends Model
     {
         $this->attributes['password'] = password_hash($this->attributes['password'], PASSWORD_DEFAULT);
     }
+
 }

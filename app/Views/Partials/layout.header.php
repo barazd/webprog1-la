@@ -10,6 +10,19 @@
     <div class="wrapper">
         <header>
             <div class="mw-container header">
+                <div class="head">
+                    <div class="logo"></div>
+                    <div class="user">
+                        <?php if ($auth['authenticated'])
+                        {
+                            print 'Üdvözöllek ' . $auth['user']['last_name'] . ' ' . $auth['user']['first_name'] . ' (' . $auth['user']['username'] . ')';
+                        }
+                        else 
+                        {
+                            print 'Kijelentkezve';
+                        } ?>
+                    </div>
+                </div>
                 <h1>Web-programozás-1 Gyakorlat Házi feladat</h1>
                 <?php include 'mainmenu.php' ?>
             </div>

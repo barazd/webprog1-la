@@ -101,4 +101,12 @@ abstract class Model
             return false;
         }
     }
+
+    // Összes nem védett attribútum tömbbe, amikor nem egyenként kell lekérdezni
+    public function getAttributes(): array
+    {
+        return array_filter($this->attributes, function(string $key): bool {
+            return !in_array($key, $this->protected);
+        }, ARRAY_FILTER_USE_KEY);
+    }
 }

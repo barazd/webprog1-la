@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Models\User;
+
 /**
  * Egyszerű session kezelés
  */
@@ -19,9 +21,16 @@ class Session
     }
 
     // Session törlése
-    public function unset(): void
+    public function unset(string $key = ''): void
     {
-        session_unset();
+        if(!empty($key))
+        {
+            unset($_SESSION[$key]);
+        }
+        else
+        {
+            session_unset();
+        }
     }
 
     // Tulajdonság lekérése 
@@ -31,9 +40,24 @@ class Session
     }
 
     // Tulajdonság beállítása
-    public function __set(string $key, $value)
+    public function __set(string $key, $value): void
     {
         $_SESSION[$key] = $value;
-        return $this;
+    }
+
+    // Be van-e jelentkezve
+    public function isAuthenticated(): bool
+    {
+        return isset($_SESSION['authenticated_user_id']);
+    }
+
+    // Bejelentkezett felhasználó
+    public function getAuthenticatedUser(): ?User
+    {
+        if ($this->isAuthenticated())
+        {
+            return User::find($_SESSION['authenticated_user_id']);
+        }
+        return null;
     }
 }

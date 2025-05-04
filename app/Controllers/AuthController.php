@@ -25,7 +25,7 @@ class AuthController extends Controller
         $errors = [];
 
         // Ha nincs bejelentkezett felhasználó
-        if (!$session->current_user)
+        if (!$session->authenticated_user_id)
         {
             // Validáció
             if ($data['username'] && $data['password'])
@@ -34,7 +34,7 @@ class AuthController extends Controller
                 {
                     if ($user->verifyPassword($data['password']))
                     {
-                        $session->current_user = $user->id;
+                        $session->authenticated_user_id = $user->id;
 
                         // Ha sikerült belépni, a kezdőlapra irányítjuk
                         header("Location: /");
@@ -62,8 +62,12 @@ class AuthController extends Controller
 
     public function logout($data): void
     {
+        $session = new Session();
 
-        $this->view('belepes', []);
+        $session->unset();
+
+        header("Location: /belepes");
+        die();
     }
 
     public function register($data): void

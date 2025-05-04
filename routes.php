@@ -18,5 +18,6 @@ $router->get('/kepek', KepekController::class, 'index');
 $router->get('/belepes', AuthController::class, 'index');
 $router->post('/belepes', AuthController::class, 'login');
 $router->post('/regisztracio', AuthController::class, 'register');
+$router->get('/kilepes', AuthController::class, 'logout');
 
 $router->init();

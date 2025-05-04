@@ -46,7 +46,7 @@ define('MAIN_MENU', [
     ],
     [
         'title' => 'Kilépés',
-        'path' => '/',
+        'path' => '/kilepes',
         'visible' => true
     ],
 ]);
