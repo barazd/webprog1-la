@@ -9,7 +9,7 @@ use App\Models\User;
  */
 class Session
 {
-    public function __construct()
+    private static function init()
     {
         // Ha még nincs session, elkezdünk egyet
         if (session_status() === PHP_SESSION_NONE) {
@@ -21,8 +21,9 @@ class Session
     }
 
     // Session törlése
-    public function unset(string $key = ''): void
+    public static function unset(string $key = ''): void
     {
+        self::init();
         if(!empty($key))
         {
             unset($_SESSION[$key]);
@@ -34,29 +35,31 @@ class Session
     }
 
     // Tulajdonság lekérése 
-    public function __get(string $key): mixed
+    public static function get(string $key): mixed
     {
+        self::init();
         return (array_key_exists( $key, $_SESSION) ? $_SESSION[$key] : null);
     }
 
     // Tulajdonság beállítása
-    public function __set(string $key, $value): void
+    public static function set(string $key, $value): void
     {
+        self::init();
         $_SESSION[$key] = $value;
     }
 
     // Be van-e jelentkezve
-    public function isAuthenticated(): bool
+    public static function isAuthenticated(): bool
     {
-        return isset($_SESSION['authenticated_user_id']);
+        return self::get('authenticated_user_id') !== null;
     }
 
     // Bejelentkezett felhasználó
-    public function getAuthenticatedUser(): ?User
+    public static function getAuthenticatedUser(): ?User
     {
-        if ($this->isAuthenticated())
+        if (self::isAuthenticated())
         {
-            return User::find($_SESSION['authenticated_user_id']);
+            return User::find(self::get('authenticated_user_id'));
         }
         return null;
     }

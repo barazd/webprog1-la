@@ -18,11 +18,10 @@ abstract class Controller
         // TODO: route és authentikált adatok injektálása ITT
         $data['route'] = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-        $session = new Session();
-        if($session->isAuthenticated())
+        if(Session::isAuthenticated())
         {
             $data['auth']['authenticated'] = true;
-            $data['auth']['user'] = $session->getAuthenticatedUser()->getAttributes();
+            $data['auth']['user'] = Session::getAuthenticatedUser()->getAttributes();
         }
         else
         {

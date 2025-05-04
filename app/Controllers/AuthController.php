@@ -14,18 +14,21 @@ class AuthController extends Controller
     // A Belépés oldal
     public function index(): void
     {
+        if (Session::isAuthenticated())
+        {
+            header("Location: /");
+            die();
+        }
         $this->view('belepes');
     }
 
     // Belépéskor
     public function login($data): void
     {
-        $session = new Session();
-
         $errors = [];
 
         // Ha nincs bejelentkezett felhasználó
-        if (!$session->authenticated_user_id)
+        if (!Session::isAuthenticated())
         {
             // Validáció
             if ($data['username'] && $data['password'])
@@ -34,7 +37,7 @@ class AuthController extends Controller
                 {
                     if ($user->verifyPassword($data['password']))
                     {
-                        $session->authenticated_user_id = $user->id;
+                        Session::set('authenticated_user_id', $user->id);
 
                         // Ha sikerült belépni, a kezdőlapra irányítjuk
                         header("Location: /");
@@ -62,9 +65,7 @@ class AuthController extends Controller
 
     public function logout($data): void
     {
-        $session = new Session();
-
-        $session->unset();
+        Session::unset('authenticated_user_id');
 
         header("Location: /belepes");
         die();
