@@ -12,10 +12,10 @@ define('APP_ROOT', dirname(dirname(__FILE__)));
 define('URL_ROOT', '/');
 
 // Adatbázis
-define('DB_HOST', 'localhost');
-define('DB_USER', 'meg');
-define('DB_PASS', 'nincs');
-define('DB_NAME', 'kitalalava');
+define('DB_HOST', 'sql');
+define('DB_USER', 'webprog1-la');
+define('DB_PASSWORD', 'nagyonbiztonsagosjelszo');
+define('DB_NAME', 'webprog1-la');
 
 // Menürendszer
 define('MAIN_MENU', [

@@ -1,7 +1,7 @@
 services:
     caddy:
         container_name: caddy
-        image: caddy:latest
+        image: webprog1-la/caddy
         build:
           dockerfile: deployment/caddy.Dockerfile
         volumes:
@@ -13,7 +13,7 @@ services:
 
     php:
         container_name: php
-        image: php:8.4-fpm
+        image: webprog1-la/php
         build:
           dockerfile: deployment/php.Dockerfile
         volumes:
@@ -23,8 +23,24 @@ services:
         ports:
             - 9000:9000
 
+    sql:
+        container_name: sql
+        image: mariadb:latest
+        volumes:
+            - db:/var/lib/mysql
+        environment:
+            MARIADB_RANDOM_ROOT_PASSWORD: true
+            MYSQL_DATABASE: webprog1-la
+            MYSQL_USER: webprog1-la
+            MYSQL_PASSWORD: nagyonbiztonsagosjelszo
+        networks:
+            - app
+        ports:
+            - 3306:3306
+
 volumes:
     storage:
+    db:
 
 networks:
     app:

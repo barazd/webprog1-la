@@ -6,7 +6,7 @@ namespace App;
  * CONTROLLER
  * Ez az ősosztály a kontrollerekhez
  */
-class Controller
+abstract class Controller
 {
     // View-ok egyszerű betöltése
     protected function view(string $name, array $data = []): void
