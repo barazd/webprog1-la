@@ -14,13 +14,14 @@ abstract class Model
     private $protected = [];
 
     // A modell attribútumai
-    protected $attributes = [];
+    private $attributes = [];
 
     // Feltöltjük az adatokkal a modellt
     public function __construct(array $attributes = [])
     {
         $this->setAttributes($attributes);
     }
+
     private function setAttributes(array $attributes): void
     {
         $this->attributes = $attributes;

@@ -13,6 +13,6 @@ class KezdolapController extends Controller
     public function index(): void
     {
         $router = new Router();
-        $this->view('kezdolap', ['route' => $router->getRoute()]);
+        $this->view('kezdolap', []);
     }
 }

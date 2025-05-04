@@ -15,6 +15,6 @@ class KepekController extends Controller
     {
         
         $router = new Router();
-        $this->view('kepek', ['route' => $router->getRoute(), 'user' => User::find(1)->username]);
+        $this->view('kepek', []);
     }
 }

@@ -11,7 +11,6 @@
         <div class="box">
             <h2>Oldalsáv</h2>
             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus, amet optio deleniti aliquid laboriosam quas beatae quod quam libero repudiandae, dolor nihil quaerat, totam alias saepe numquam quidem? Voluptates, nostrum.</p>
-            <code><?php var_dump($user) ?></code>
         </div>
     </aside>
 
