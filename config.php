@@ -22,31 +22,28 @@ define('MAIN_MENU', [
     [
         'title' => 'Főoldal',
         'path' => '/',
-        'visible' => true
     ],
     [
         'title' => 'Képek',
         'path' => '/kepek',
-        'visible' => true
     ],
     [
         'title' => 'Kapcsolat',
         'path' => '/kapcsolat',
-        'visible' => true
     ],
     [
         'title' => 'Üzenetek',
         'path' => '/uzenetek',
-        'visible' => true
+        'authenticated' => true
     ],
     [
         'title' => 'Belépés',
         'path' => '/belepes',
-        'visible' => true
+        'authenticated' => false
     ],
     [
         'title' => 'Kilépés',
         'path' => '/kilepes',
-        'visible' => true
+        'authenticated' => true
     ],
 ]);
