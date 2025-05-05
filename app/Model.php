@@ -119,9 +119,9 @@ abstract class Model
     }
 
     // Az összes elem lekérdezése
-    public static function all(): ?array
+    public static function all(array $order = []): ?array
     {
-        $sql = 'SELECT * FROM ' . static::$table;
+        $sql = 'SELECT * FROM ' . static::$table . (isset($order['by']) ? ' ORDER BY ' . $order['by'] . (isset($order['dir']) && in_array($order['dir'], ['DESC', 'ASC']) ? ' ' . $order['dir'] : '') : '');
 
         if ($data = DB::fetchAll($sql, Message::class)) {
             return $data;

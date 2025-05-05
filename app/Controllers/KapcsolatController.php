@@ -80,7 +80,7 @@ class KapcsolatController extends Controller
         // Ha nincs bejelentkezett felhasználó
         if (Session::isAuthenticated())
         {
-            $messages = Message::all();
+            $messages = Message::all(['by' => 'created_at', 'dir' => 'DESC']);
 
             $this->view('uzenetek', ['messages' => $messages]);
         }
