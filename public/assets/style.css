@@ -186,6 +186,9 @@ footer .by {
 .form-value .input.col p {
     font-size: .8rem;
 }
+.form-value .input.col p.input-error {
+    color: darkred;
+}
 .form-value .input input, .form-value .input select, .form-value .input textarea {
     display: block;
     border: 1px solid dimgray;
