@@ -9,3 +9,5 @@ RUN curl -sSLf \
 WORKDIR /var/www/html
 
 COPY . .
+
+CMD ["php-fpm", "-R"]
