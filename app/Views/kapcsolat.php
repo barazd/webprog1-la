@@ -19,6 +19,7 @@
         ?>
         <div class="box">
             <h2>Kapcsolat</h2>
+            <p>Vedd fel velünk a kapcsolatot, írj üzenetet!</p>
             <form action="/kapcsolat" method="post" class="formatted-form">
                 <?php if (!$auth['authenticated']) {
                     print ' <div class="form-value">
@@ -40,7 +41,7 @@
                 ?>
                 <div class="form-value">
                     <div class="label"><label for="message">Üzenet</label></div>
-                    <div class="input"> <textarea name="message" id="message"></textarea></div>
+                    <div class="input"><textarea name="message" id="message"></textarea></div>
                 </div>
                 <div class="form-value">
                     <div class="label"></div>
