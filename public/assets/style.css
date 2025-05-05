@@ -438,6 +438,10 @@ footer .by {
 
 /* reszponzív */
 
+nav label, nav input[type='checkbox'] {
+    display: none;
+}
+
 @media only screen and (max-width: 600px) {
     html, body {
         font-size: 12px;
@@ -450,6 +454,35 @@ footer .by {
     }
     .hero .content h2 {
         font-size: 5rem;
+    }
+
+    /* Hamburger menü */
+    header nav ul {
+        flex-direction: column;
+        width: 100%;
+        flex-basis: 100%;
+    }
+    header nav ul li {
+        width: 100%;
+    }
+    header nav ul li a {
+        padding: 1rem 1.5rem;
+    }
+    nav input[type='checkbox']:not(:checked)+ul {
+        display: none;
+    }
+    nav label {
+        display: flex;
+        padding: 1.6rem 0;
+        height: 24px;
+        line-height: 24px;
+        align-items: center;
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        gap: .5rem;
+    }
+    nav label:hover {
+        cursor: pointer;
     }
 }
 
