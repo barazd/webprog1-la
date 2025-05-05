@@ -20,6 +20,17 @@ class Router
         $this->route['method'] = $_SERVER['REQUEST_METHOD'];
     }
 
+    // A felhasználótól érkezett adatok fertőtlenítése
+    private function sanitize(array $data): array
+    {
+        $sanizizedData = [];
+        foreach ($data as $key => $value)
+        {
+            $sanizizedData[$key] = htmlspecialchars($value);
+        }
+        return $sanizizedData;
+    }
+
     // 
     public function init(): void
     {
@@ -36,10 +47,11 @@ class Router
             if ($method === 'GET' && !empty($query))
             {
                 parse_str($query, $data);
+                $data = $this->sanitize($data);
             }
             elseif ($method === 'POST' && !empty($_POST))
             {
-                $data = $_POST;
+                $data = $this->sanitize($_POST);
             }
             else
             {

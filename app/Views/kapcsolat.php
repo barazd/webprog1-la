@@ -20,18 +20,24 @@
         <div class="box">
             <h2>Kapcsolat</h2>
             <form action="/kapcsolat" method="post" class="formatted-form">
-                <?php if (isset($errors) && count($errors)) {
-                    print '<div class="box error"><ul>';
-                    foreach ($errors as $error) {
-                        print '<li>' . $error . '</li>';
-                    }
-                    print '</ul></div>';
+                <?php if (!$auth['authenticated']) {
+                    print ' <div class="form-value">
+                                <div class="label"><label for="sender_name">Név</label></div>
+                                <div class="input"><input type="text" name="sender_name" id="sender_name" /></div>
+                            </div>';
+                    print ' <div class="form-value">
+                                <div class="label"><label for="sender_email">E-mail cím</label></div>
+                                <div class="input"><input type="text" name="sender_email" id="sender_email" /></div>
+                            </div>';
+                }
+                else
+                {
+                    print ' <div class="form-value">
+                                <div class="label"></div>
+                                <div class="input"><p>Bejelentkezett felhasználóként küldesz üzenetet.</p></div>
+                            </div>';
                 }
                 ?>
-                <div class="form-value">
-                    <div class="label"><label for="login_username">Felhasználónév</label></div>
-                    <div class="input"><input type="text" name="username" id="login_username" /></div>
-                </div>
                 <div class="form-value">
                     <div class="label"><label for="message">Üzenet</label></div>
                     <div class="input"> <textarea name="message" id="message"></textarea></div>
