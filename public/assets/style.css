@@ -128,77 +128,6 @@ footer .by {
     text-transform: uppercase;
 }
 
-/* Táblázat feladat */
-.table th, .table td {
-    padding: .3em .5em;
-    border-bottom: 1px solid lightgray;
-}
-.table tr:last-child td {
-    border-bottom: none;
-}
-.table thead th {
-    text-align: left;
-    vertical-align: middle;
-}
-.table thead th.sortable:hover {
-    background-color: lightgray;
-    cursor: pointer;
-}
-.table thead th.sortable::after {
-    content: '';
-    display: inline-block;
-    background-color: gray;
-    mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M4.854 2.146a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L4 3.707V13.5a.5.5 0 0 0 1 0V3.707l2.146 2.147a.5.5 0 1 0 .708-.708zm6.299 11.714a.5.5 0 0 0 .694 0l3-2.9a.5.5 0 1 0-.694-.72L12 12.321v-9.82a.5.5 0 0 0-1 0v9.82l-2.152-2.08a.5.5 0 1 0-.696.718z"/></svg>');
-    width: 16px;
-    height: 16px;
-    margin-left: .3rem;
-}
-.table thead th.sortable.asc::after {
-    mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M13 1.5a.5.5 0 0 0-1 0v11.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0-.708-.708L13 13.293zM2.5 3a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1zm2 3a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zM6 9.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5"/></svg>');
-    background-color: black;
-}
-.table thead th.sortable.desc::after {
-    mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M13 14.5a.5.5 0 0 1-1 0V2.707l-1.146 1.147a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L13 2.707zM2.5 13a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1zm2-3a.5.5 0 0 1 0-1h5a.5.5 0 0 1 0 1zM6 6.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 0-1h-3a.5.5 0 0 0-.5.5"/></svg>');
-    background-color: black;
-}
-.table tbody td code {
-    font-size: .7rem;
-    background-color: lightcyan;
-    padding: .1rem .4rem;
-    border-radius: 50vh;
-}
-.table td.buttons {
-    display: flex;
-    gap: .3rem;
-    justify-content: end;
-    
-}
-.table td.buttons button {
-    display: block;
-    border: 1px solid dimgray;
-    border-radius: .3rem;
-    padding: .2rem .3rem;
-}
-.table td.buttons button.item-delete {
-    color: red;
-}
-
-.filter {
-    border-top: 1px solid gray;
-    padding-top: 1rem;
-}
-.filter form {
-    display: flex;
-    gap: .3rem;
-    align-items: center;
-}
-.filter input, .filter select, .filter button {
-    display: block;
-    border: 1px solid dimgray;
-    border-radius: .3rem;
-    padding: .3rem .6rem;
-}
-
 .modal-wrapper {
     position: fixed;
     display: flex;
@@ -226,7 +155,7 @@ footer .by {
     max-width: 800px;
     z-index: 12;
 }
-.modal-wrapper .box form {
+.modal-wrapper .box form, form.formatted-form {
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -248,6 +177,12 @@ footer .by {
     display: flex;
     align-items: center;
     gap: .5rem;
+}
+.form-value .input.col {
+    flex-direction: column;
+}
+.form-value .input.col p {
+    font-size: .8rem;
 }
 .form-value .input input, .form-value .input select {
     display: block;
@@ -271,100 +206,6 @@ footer .by {
     border-color: darkgray;
 }
 
-/* ChartJs feladat */
-
-#table th, #table td {
-    padding: .3em .5em;
-    border-bottom: 1px solid lightgray;
-}
-#table tr:last-child td {
-    border-bottom: none;
-}
-#table thead th {
-    text-align: left;
-    vertical-align: middle;
-}
-
-/* HTML5 feladat */
-.dnd-wrapper {
-    display: flex;
-    gap: 4rem;
-    justify-content: space-between;
-}
-.dnd-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(5rem, 1fr));
-    grid-template-rows: masonry;
-    place-content: space-around;
-    padding: 1rem;
-    gap: 1rem;
-    width: 100%;
-    aspect-ratio : 1 / 1;
-    border: 4px dashed lightgray;
-    border-radius: 2rem;
-}
-.draggable {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: darkslateblue;
-    color: white;
-    font-weight: bold;
-    font-size: 2rem;
-    width: 5rem;
-    height: 5rem;
-    border-radius: .5rem;
-}
-.draggable:hover {
-    background: purple;
-    cursor: grab;
-}
-.draggable.dragging {
-    background: navy;
-    cursor: grabbing !important;
-}
-
-#canvas-result {
-    background: white;
-    width: 100%;
-    aspect-ratio: 2 / 1;
-}
-#svg-result {
-    background: white;
-    width: 100%;
-    aspect-ratio: 2 / 1;
-}
-
-/* OOJS feladat */
-#todo {
-    display: flex;
-    flex-direction: column;
-    border-top: 1px solid lightgray;
-}
-#todo .task {
-    display: flex;
-    justify-content: stretch;
-    gap: 1rem;
-    align-items: center;
-    padding: .5rem 0;
-    border-bottom: 1px solid lightgray;
-}
-#todo .task input, #todo .task span, #todo .task button {
-    display: flex;
-    flex: none;
-}
-#todo .task span {
-    flex-grow: 1;
-    font-size: 1.2rem;
-}
-#todo .task button.delete-task {
-    font-size: .8rem;
-    color: red;
-    padding: .2rem .4rem;
-    border: 1px solid dimgray;
-    border-radius: .5rem;
-}
-
 /* AJAX feladat */
 #toast {
     visibility: hidden;
@@ -385,13 +226,21 @@ footer .by {
     visibility: visible;
     animation: fadein 0.5s, fadeout 0.5s 2.5s;
 }
-#toast.success {
+#toast.success, .box.success {
     background: lightgreen;
     color: darkgreen;
 }
-#toast.error {
+#toast.error, .box.error {
     background: lightsalmon;
     color: darkred;
+}
+
+.box.success ul, .box.error ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
 }
 
 @keyframes fadein {
