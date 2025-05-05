@@ -82,6 +82,7 @@ section {
 section .section {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
+    justify-items: stretch;
 }
 section .content {
     grid-column: span 3;
@@ -111,6 +112,7 @@ footer .by {
 .mw-container {
     max-width: 1200px;
     margin: 0 auto;
+    width: 100%;
 }
 
 /* Egyéb elemek */
@@ -184,7 +186,10 @@ footer .by {
 .form-value .input.col p {
     font-size: .8rem;
 }
-.form-value .input input, .form-value .input select {
+.form-value .input.col p.input-error {
+    color: darkred;
+}
+.form-value .input input, .form-value .input select, .form-value .input textarea {
     display: block;
     border: 1px solid dimgray;
     border-radius: .3rem;
@@ -206,7 +211,18 @@ footer .by {
     border-color: darkgray;
 }
 
-/* AJAX feladat */
+.table th, .table td {
+    padding: .3em .5em;
+    border-bottom: 1px solid lightgray;
+}
+.table tr:last-child td {
+    border-bottom: none;
+}
+.table thead th {
+    text-align: left;
+    vertical-align: middle;
+}
+
 #toast {
     visibility: hidden;
     min-width: 250px;

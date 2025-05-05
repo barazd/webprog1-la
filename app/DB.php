@@ -41,4 +41,20 @@ abstract class DB
         }
         
     }
+
+    public static function fetchAll(string $sql, string $class, array $params = [])
+    {
+        try {
+            $pdo = self::connect();
+
+            $query = $pdo->prepare($sql);
+
+            $query->execute($params);
+
+            return $query->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, $class);
+        } catch (PDOException $e) {
+            throw new \Exception('500, hiba a lekérdezésben: ' . $e->getMessage() . ', lekérdezés: ' . $query->queryString);
+        }
+
+    }
 }
