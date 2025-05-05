@@ -3,6 +3,7 @@
 namespace App;
 
 use App\DB;
+use App\Models\Message;
 use Exception;
 
 /**
@@ -52,6 +53,13 @@ abstract class Model
     public function __get($key): mixed
     {
         return array_key_exists($key, $this->attributes) && in_array($key, $this->protected) ? null : $this->attributes[$key];
+    }
+
+    // Nem védett attribútum beállítása
+    public function __set($key, $value): void
+    {
+        if (!in_array($key, $this->protected))
+            $this->attributes[$key] = $value;
     }
 
     // Új létrehozásához SQL logika
@@ -108,5 +116,17 @@ abstract class Model
         return array_filter($this->attributes, function(string $key): bool {
             return !in_array($key, $this->protected);
         }, ARRAY_FILTER_USE_KEY);
+    }
+
+    // Az összes elem lekérdezése
+    public static function all(): ?array
+    {
+        $sql = 'SELECT * FROM ' . static::$table;
+
+        if ($data = DB::fetchAll($sql, Message::class)) {
+            return $data;
+        } else {
+            return null;
+        }
     }
 }

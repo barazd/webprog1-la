@@ -14,7 +14,6 @@ class KapcsolatController extends Controller
     // Kapcsolat oldal
     public function index(): void
     {
-
         $this->view('kapcsolat', []);
     }
 
@@ -81,8 +80,9 @@ class KapcsolatController extends Controller
         // Ha nincs bejelentkezett felhasználó
         if (Session::isAuthenticated())
         {
+            $messages = Message::all();
 
-            $this->view('uzenetek', []);
+            $this->view('uzenetek', ['messages' => $messages]);
         }
         else
         {
