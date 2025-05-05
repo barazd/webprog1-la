@@ -10,6 +10,7 @@
     box-sizing: border-box;
 }
 
+
 /* Alap dizájn */
 html, body {
     background: slategray;
@@ -432,4 +433,39 @@ footer .by {
 .hero .content p {
     color: antiquewhite;
     font-size: 2rem;
+}
+
+
+/* reszponzív */
+
+@media only screen and (max-width: 600px) {
+    html, body {
+        font-size: 12px;
+    }
+    .box, .hero {
+        width: 100%;
+        margin: 1rem 0;
+        border-radius: 0;
+        overflow-y: hidden;
+    }
+    .hero .content h2 {
+        font-size: 5rem;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    section .section {
+        grid-template-columns: none;
+    }
+    .mw-container {
+        width: 100%;
+        margin: 0;
+    }
+    section aside {
+        border-top: 1px solid darkslategray;
+        border-left: 0;
+    }
+    section .content {
+        grid-column: 1 / -1;
+    }
 }
