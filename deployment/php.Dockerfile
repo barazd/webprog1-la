@@ -6,8 +6,12 @@ RUN curl -sSLf \
     chmod +x /usr/local/bin/install-php-extensions && \
     install-php-extensions pdo_mysql
 
+
+
 WORKDIR /var/www/html
 
 COPY . .
 
-CMD ["php-fpm", "-R"]
+RUN chown -R www-data:www-data /var/www/html
+
+USER www-data

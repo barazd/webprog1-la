@@ -17,8 +17,19 @@
         ?>
         <div class="box">
             <h2>Képek</h2>
-            <p>Ide jön majd a tartalom...</p>
-            <p><a href="https://github.com/barazd/webprog1-la" target="_blank">GitHub</a></p>
+            <div class="gallery">
+                <?php
+                    foreach ($photos as $photo)
+                    {
+                        print ' <div class="thumbnail">
+                                    <a href="#" onclick="lightbox(' . $photo->title . ', ' . $photo->path . ')">
+                                        <img src="' . $photo->path . '" />
+                                        <p>' . $photo->title . '</p>
+                                    </a>
+                                </div>';
+                    }
+                ?>
+            </div>
         </div>
     </div>
     <aside>
