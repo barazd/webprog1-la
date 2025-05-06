@@ -6,7 +6,7 @@ RUN curl -sSLf \
     chmod +x /usr/local/bin/install-php-extensions && \
     install-php-extensions pdo_mysql
 
-
+COPY deployment/php.ini /usr/local/etc/php/php.ini
 
 WORKDIR /var/www/html
 

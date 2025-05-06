@@ -21,7 +21,7 @@
                 <?php
                     foreach ($photos as $photo)
                     {
-                        print ' <a href="#" onclick="lightbox(' . $photo->title . ', ' . $photo->path . ')" style="background-image: url(' . $photo->path . ');" class="thumbnail">
+                        print ' <a href="#" onclick="lightbox(\'' . $photo->title . '\', \'' . $photo->path . '\')" style="background-image: url(' . $photo->path . ');" class="thumbnail">
                                     <img src="' . $photo->path . '" />
                                     <p>' . $photo->title . '</p>
                                 </a>';
@@ -34,15 +34,30 @@
         <div class="box">
             <h2>Kép feltöltése</h2>
             <?php if ($auth['authenticated']): ?>
-            <form action="/kepek" method="post" enctype="multipart/form-data">
-                <input type="text" name="title" placeholder="Cím" />
-                <input type="file" name="file" placeholder="Tallózás..." />
-                <button type="submit">Feltöltés</button>
+            <form action="/kepek" method="post" enctype="multipart/form-data" class="formatted-form">
+                <div class="input">
+                    <input type="text" name="title" placeholder="Cím" />
+                </div>
+                <div class="input">
+                    <input type="file" name="file" placeholder="Tallózás..." />
+                </div>
+                <p>Max 10MB, .jpg, .png vagy .webp.</p>
+                <div class="input">
+                    <button type="submit">Feltöltés</button>
+                </div>
             </form>
             <?php else: ?>
             <p>Csak bejelentkezett felhasználó tölthet fel képet!</p>
             <?php endif; ?>
         </div>
     </aside>
+    
+    <div class="lightbox-wrapper hidden" id="lightbox" onclick="closeLightbox()">
+        <div class="box">
+
+        </div>
+    </div>
+
+    <script src="/assets/lightbox.js"></script>
 
 <?php include 'Partials/layout.footer.php' ?>
