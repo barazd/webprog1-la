@@ -12,7 +12,8 @@
 
 
 /* Alap dizájn */
-html, body {
+html,
+body {
     background: slategray;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
@@ -29,23 +30,27 @@ header {
     background: darkslategray;
     color: azure;
 }
+
 header .header {
     display: flex;
     flex-direction: column;
     gap: 1rem;
     padding: 1rem;
 }
+
 header h1 {
     font-size: 2rem;
     padding-bottom: 1rem;
     border-bottom: 1px dashed slategray;
 }
+
 header nav ul {
     list-style-type: none;
     padding: 0;
     display: flex;
     gap: .3rem;
 }
+
 header nav ul li a {
     display: flex;
     align-items: center;
@@ -55,17 +60,20 @@ header nav ul li a {
     color: azure;
     padding: .3rem .7rem;
 }
+
 header nav ul li a.active {
     background: black;
     color: white;
     font-weight: bold;
     border-radius: 50vh;
 }
+
 header nav ul li a:hover {
     background: darkcyan;
     color: white;
     border-radius: 50vh;
 }
+
 header nav ul li a.newpage::after {
     content: '';
     display: block;
@@ -79,14 +87,17 @@ header nav ul li a.newpage::after {
 section {
     display: flex;
 }
+
 section .section {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     justify-items: stretch;
 }
+
 section .content {
     grid-column: span 3;
 }
+
 section aside {
     border-left: 1px solid darkslategray;
 }
@@ -96,11 +107,13 @@ footer {
     background: darkslategray;
     color: azure;
 }
-footer .footer { 
+
+footer .footer {
     display: flex;
     justify-content: space-between;
     padding: 1rem;
 }
+
 footer .by {
     background: black;
     color: white;
@@ -125,12 +138,13 @@ footer .by {
     margin: 1rem;
     border-radius: .5rem;
 }
+
 .box h2 {
     font-size: 1.2rem;
     text-transform: uppercase;
 }
 
-.modal-wrapper {
+.lightbox-wrapper {
     position: fixed;
     display: flex;
     align-items: center;
@@ -141,10 +155,12 @@ footer .by {
     left: 0;
     z-index: 10;
 }
-.modal-wrapper.hidden {
+
+.lightbox-wrapper.hidden {
     display: none;
 }
-.modal-wrapper::before {
+
+.lightbox-wrapper::before {
     position: absolute;
     content: '';
     background-color: rgba(0, 0, 0, 0.4);
@@ -152,51 +168,71 @@ footer .by {
     height: inherit;
     width: inherit;
 }
-.modal-wrapper .box {
+
+.lightbox-wrapper .box {
     min-width: 500px;
-    max-width: 800px;
+    max-width: 90vw;
+    min-height: 500px;
+    max-height: 90vh;
     z-index: 12;
 }
-.modal-wrapper .box form, form.formatted-form {
+
+.lightbox-wrapper .box img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+form.formatted-form {
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
+
 .form-value {
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 1rem 2rem;
 }
-.form-value .label  {
+
+.label {
     grid-column: span 2 / span 2;
     display: flex;
     align-items: center;
     justify-content: flex-end;
     font-weight: bold;
 }
-.form-value .input {
+
+.input {
     grid-column: span 3 / span 3;
     display: flex;
     align-items: center;
     gap: .5rem;
 }
-.form-value .input.col {
+
+.input.col {
     flex-direction: column;
 }
-.form-value .input.col p {
+
+.input.col p {
     font-size: .8rem;
 }
-.form-value .input.col p.input-error {
+
+.input.col p.input-error {
     color: darkred;
 }
-.form-value .input input, .form-value .input select, .form-value .input textarea {
+
+.input input,
+.input select,
+.input textarea {
     display: block;
     border: 1px solid dimgray;
     border-radius: .3rem;
     padding: .3rem .6rem;
     width: 100%;
 }
-.form-value .input button {
+
+.input button {
     display: block;
     border: 1px solid black;
     background: darkslategray;
@@ -205,19 +241,23 @@ footer .by {
     padding: .3rem .6rem;
     align-self: flex-end;
 }
-.form-value .input input:read-only {
+
+.input input:read-only {
     background: lightgray;
     color: dimgray;
     border-color: darkgray;
 }
 
-.table th, .table td {
+.table th,
+.table td {
     padding: .3em .5em;
     border-bottom: 1px solid lightgray;
 }
+
 .table tr:last-child td {
     border-bottom: none;
 }
+
 .table thead th {
     text-align: left;
     vertical-align: middle;
@@ -242,16 +282,21 @@ footer .by {
     visibility: visible;
     animation: fadein 0.5s, fadeout 0.5s 2.5s;
 }
-#toast.success, .box.success {
+
+#toast.success,
+.box.success {
     background: lightgreen;
     color: darkgreen;
 }
-#toast.error, .box.error {
+
+#toast.error,
+.box.error {
     background: lightsalmon;
     color: darkred;
 }
 
-.box.success ul, .box.error ul {
+.box.success ul,
+.box.error ul {
     list-style: none;
     padding: 0;
     display: flex;
@@ -260,12 +305,27 @@ footer .by {
 }
 
 @keyframes fadein {
-    from {bottom: 0; opacity: 0;}
-    to {bottom: 30px; opacity: 1;}
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+
+    to {
+        bottom: 30px;
+        opacity: 1;
+    }
 }
+
 @keyframes fadeout {
-    from {bottom: 30px; opacity: 1;}
-    to {bottom: 0; opacity: 0;}
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
 }
 
 /* LA: Kezdőlap */
@@ -278,6 +338,7 @@ footer .by {
     border-radius: .5rem;
     margin: 1rem;
 }
+
 .hero video {
     width: 100%;
     height: 100%;
@@ -285,38 +346,105 @@ footer .by {
     object-fit: cover;
     z-index: 0;
 }
+
 .hero .content {
     z-index: 1;
     position: relative;
     padding: 5rem;
 }
+
 .hero .content h2 {
     color: antiquewhite;
     font-size: 10rem;
     text-transform: uppercase;
 }
+
 .hero .content p {
     color: antiquewhite;
     font-size: 2rem;
 }
 
+/* LA: galéria */
+.gallery {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: flex-start;
+    align-items: stretch;
+    resize: both;
+}
+
+.gallery:after {
+    content: "";
+    flex: 100 0 auto;
+}
+
+.thumbnail {
+    position: relative;
+    display: inline-block;
+    flex: 1 0 auto;
+    height: 12rem;
+    margin: .3rem;
+    text-decoration: none;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-color: rgba(0, 0, 0, 0.50);
+    box-shadow: 0 0 0 0 black;
+    transition: box-shadow 300ms, transform 400ms, z-index 400ms, background-position 400ms;
+    z-index: 1;
+}
+
+.thumbnail:hover {
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.7);
+    transform: scale(1.1, 1.1);
+    z-index: 8;
+}
+
+.thumbnail img {
+    display: block;
+    opacity: 0;
+    min-width: 5rem;
+    max-width: 20rem;
+    height: 100%;
+}
+
+.thumbnail p {
+    margin-top: -2rem;
+    padding: .5rem;
+    height: 2rem;
+    background:  rgba(0, 0, 0, 0.7);
+    color: white;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 20rem;
+    line-height: 1rem;
+    white-space: nowrap;
+}
 
 /* reszponzív */
 
-nav label, nav input[type='checkbox'] {
+nav label,
+nav input[type='checkbox'] {
     display: none;
 }
 
 @media only screen and (max-width: 600px) {
-    html, body {
+
+    html,
+    body {
         font-size: 12px;
     }
-    .box, .hero {
+
+    .box,
+    .hero {
         width: 100%;
         margin: 1rem 0;
         border-radius: 0;
         overflow-y: hidden;
     }
+
     .hero .content h2 {
         font-size: 5rem;
     }
@@ -327,15 +455,19 @@ nav label, nav input[type='checkbox'] {
         width: 100%;
         flex-basis: 100%;
     }
+
     header nav ul li {
         width: 100%;
     }
+
     header nav ul li a {
         padding: 1rem 1.5rem;
     }
+
     nav input[type='checkbox']:not(:checked)+ul {
         display: none;
     }
+
     nav label {
         display: flex;
         padding: 1.6rem 0;
@@ -346,6 +478,7 @@ nav label, nav input[type='checkbox'] {
         text-transform: uppercase;
         gap: .5rem;
     }
+
     nav label:hover {
         cursor: pointer;
     }
@@ -355,14 +488,17 @@ nav label, nav input[type='checkbox'] {
     section .section {
         grid-template-columns: none;
     }
+
     .mw-container {
         width: 100%;
         margin: 0;
     }
+
     section aside {
         border-top: 1px solid darkslategray;
         border-left: 0;
     }
+
     section .content {
         grid-column: 1 / -1;
     }

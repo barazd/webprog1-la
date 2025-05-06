@@ -15,6 +15,7 @@ $router = new Router();
 $router->get('/', KezdolapController::class, 'index');
 
 $router->get('/kepek', KepekController::class, 'index');
+$router->post('/kepek', KepekController::class, 'upload');
 
 $router->get('/kapcsolat', KapcsolatController::class, 'index');
 $router->post('/kapcsolat', KapcsolatController::class, 'save');

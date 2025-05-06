@@ -8,7 +8,7 @@
 define('SITE_NAME', 'Majd valamit kitalálok');
 
 // Útvonalak
-define('APP_ROOT', dirname(dirname(__FILE__)));
+define('APP_ROOT', dirname(__FILE__));
 define('URL_ROOT', '/');
 
 // Adatbázis
