@@ -10,6 +10,9 @@ services:
             - webprog1-la-app
         ports:
             - 9000:9000
+        depends_on:
+            change-vol-ownership:
+                condition: service_completed_successfully
 
     webprog1-la-caddy:
         container_name: webprog1-la-caddy
@@ -22,7 +25,8 @@ services:
             - webprog1-la-app
             - captain-overlay-network
         depends_on:
-          - webprog1-la-php
+            change-vol-ownership:
+                condition: service_completed_successfully
 
     webprog1-la-sql:
         container_name: webprog1-la-sql
@@ -38,6 +42,15 @@ services:
             - webprog1-la-app
         ports:
             - 3306:3306
+
+    change-vol-ownership:
+        image: ubuntu
+        user: "root"
+        group_add:
+          - 101
+        volumes:
+          - webprog1-la-db:/tmp/change-ownership
+        command: chown -R 101:101 /tmp/change-ownership
 
 volumes:
     webprog1-la-storage:
