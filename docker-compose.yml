@@ -44,7 +44,7 @@ volumes:
     webprog1-la-db:
 
 networks:
-    app:
+    webprog1-la-app:
         name: webprog1-la-app
     captain-overlay-network:
         external: true
