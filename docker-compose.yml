@@ -35,7 +35,7 @@ services:
             MYSQL_USER: webprog1-la
             MYSQL_PASSWORD: nagyonbiztonsagosjelszo
         networks:
-            - app
+            - webprog1-la-app
         ports:
             - 3306:3306
 
