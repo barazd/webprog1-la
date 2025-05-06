@@ -1,34 +1,34 @@
 services:
-    caddy:
-        container_name: caddy
+    webprog1-la-caddy:
+        container_name: webprog1-la-caddy
         image: webprog1-la/caddy
         build:
           dockerfile: deployment/caddy.Dockerfile
         volumes:
-            - storage:/var/www/html/public/storage
+            - webprog1-la-storage:/var/www/html/public/storage
         networks:
-            - app
+            - webprog1-la-app
             - captain-overlay-network
-        ports:
-            - 80:80
+        #ports:
+        #    - 80:80
 
-    php:
-        container_name: php
+    webprog1-la-php:
+        container_name: webprog1-la-php
         image: webprog1-la/php
         build:
           dockerfile: deployment/php.Dockerfile
         volumes:
-            - storage:/var/www/html/public/storage
+            - webprog1-la-storage:/var/www/html/public/storage
         networks:
-            - app
+            - webprog1-la-app
         ports:
             - 9000:9000
 
-    sql:
-        container_name: sql
+    webprog1-la-sql:
+        container_name: webprog1-la-sql
         image: mariadb:latest
         volumes:
-            - db:/var/lib/mysql
+            - webprog1-la-db:/var/lib/mysql
         environment:
             MARIADB_RANDOM_ROOT_PASSWORD: true
             MYSQL_DATABASE: webprog1-la
@@ -40,11 +40,11 @@ services:
             - 3306:3306
 
 volumes:
-    storage:
-    db:
+    webprog1-la-storage:
+    webprog1-la-db:
 
 networks:
     app:
-        name: app
+        name: webprog1-la-app
     captain-overlay-network:
         external: true

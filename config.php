@@ -12,7 +12,7 @@ define('APP_ROOT', dirname(__FILE__));
 define('URL_ROOT', '/');
 
 // Adatbázis
-define('DB_HOST', 'sql');
+define('DB_HOST', 'webprog1-la-sql');
 define('DB_USER', 'webprog1-la');
 define('DB_PASSWORD', 'nagyonbiztonsagosjelszo');
 define('DB_NAME', 'webprog1-la');
