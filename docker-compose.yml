@@ -1,4 +1,16 @@
 services:
+    webprog1-la-php:
+        container_name: webprog1-la-php
+        image: webprog1-la/php
+        build:
+          dockerfile: deployment/php.Dockerfile
+        volumes:
+            - webprog1-la-storage:/var/www/html/public/storage
+        networks:
+            - webprog1-la-app
+        ports:
+            - 9000:9000
+
     webprog1-la-caddy:
         container_name: webprog1-la-caddy
         image: webprog1-la/caddy
@@ -11,18 +23,6 @@ services:
             - captain-overlay-network
         #ports:
         #    - 80:80
-
-    webprog1-la-php:
-        container_name: webprog1-la-php
-        image: webprog1-la/php
-        build:
-          dockerfile: deployment/php.Dockerfile
-        volumes:
-            - webprog1-la-storage:/var/www/html/public/storage
-        networks:
-            - webprog1-la-app
-        ports:
-            - 9000:9000
 
     webprog1-la-sql:
         container_name: webprog1-la-sql
