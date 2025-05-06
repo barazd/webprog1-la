@@ -8,9 +8,8 @@ services:
             - storage:/var/www/html/public/storage
         networks:
             - app
-            - captain-overlay-network
         ports:
-            - 80:80
+            - 8080:80
 
     php:
         container_name: php
@@ -46,5 +45,3 @@ volumes:
 networks:
     app:
         name: app
-    captain-overlay-network:
-        external: true
