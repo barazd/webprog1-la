@@ -21,8 +21,8 @@ services:
         networks:
             - webprog1-la-app
             - captain-overlay-network
-        #ports:
-        #    - 80:80
+        depends_on:
+          - webprog1-la-php
 
     webprog1-la-sql:
         container_name: webprog1-la-sql
