@@ -47,9 +47,9 @@ services:
         image: ubuntu
         user: "root"
         group_add:
-          - 33
+            - 33
         volumes:
-          - webprog1-la-db:/tmp/change-ownership
+            - webprog1-la-storage:/tmp/change-ownership
         command: chown -R 33:33 /tmp/change-ownership
 
 volumes:
