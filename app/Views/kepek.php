@@ -21,12 +21,10 @@
                 <?php
                     foreach ($photos as $photo)
                     {
-                        print ' <div class="thumbnail">
-                                    <a href="#" onclick="lightbox(' . $photo->title . ', ' . $photo->path . ')">
-                                        <img src="' . $photo->path . '" />
-                                        <p>' . $photo->title . '</p>
-                                    </a>
-                                </div>';
+                        print ' <a href="#" onclick="lightbox(' . $photo->title . ', ' . $photo->path . ')" style="background-image: url(' . $photo->path . ');" class="thumbnail">
+                                    <img src="' . $photo->path . '" />
+                                    <p>' . $photo->title . '</p>
+                                </a>';
                     }
                 ?>
             </div>
@@ -35,11 +33,15 @@
     <aside>
         <div class="box">
             <h2>Kép feltöltése</h2>
+            <?php if ($auth['authenticated']): ?>
             <form action="/kepek" method="post" enctype="multipart/form-data">
                 <input type="text" name="title" placeholder="Cím" />
                 <input type="file" name="file" placeholder="Tallózás..." />
                 <button type="submit">Feltöltés</button>
             </form>
+            <?php else: ?>
+            <p>Csak bejelentkezett felhasználó tölthet fel képet!</p>
+            <?php endif; ?>
         </div>
     </aside>
 

@@ -18,13 +18,29 @@ class KepekController extends Controller
     }
 
     // Feltöltés logikája
-    public function upload($data): void
+    public function upload($request): void
     {
         // Ha be van jelentkezve
         if (Session::isAuthenticated())
         {
+            $data = [];
+
             // Validáció
             $errors = [];
+
+            if (!$request['title'])
+                $errors[] = 'Kötelező a kép címét megadni!';
+            if (strlen($request['title']) > 100)
+                $errors[] = 'A kép címe túl hosszú!';
+
+            if (empty($_FILES['file']))
+                $errors[] = 'Kötelező képet feltölteni!';
+            if (!in_array(strtolower(pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION)), ['jpg', 'jpeg', 'png', 'gif', 'webp', 'jfif']))
+                $errors[] = 'A kép kiterjesztése nem megengedett!';
+            if ($_FILES['file']['size'] > 10*1024*1024)
+                $errors[] = 'A kép mérete túl nagy!';
+            if ($_FILES['file']['error'])
+                $errors[] = 'Hiba történt a feltöltés közben: #' . $_FILES['file']['error'];
 
             if (empty($errors))
             {
@@ -34,7 +50,7 @@ class KepekController extends Controller
 
                 $photo = new Photo([
                     'user_id' => 1,
-                    'title' => $data['title'],
+                    'title' => $request['title'],
                     'original_name' => $_FILES['file']['name'],
                     'path' => $relativePath
                 ]);
@@ -45,19 +61,21 @@ class KepekController extends Controller
                     // Ha sikerült létrehozzuk az adatbázisban is
                     $photo->save();
 
-                    $this->view('kepek', ['success' => 'Sikertes mentés!', 'photos' => Photo::all()]);
+                    $data += ['success' => 'Sikertes mentés!'];
                 }
                 else
                 {
                     // Ha nem sikerült, akkor hiba
-                    $this->view('kepek', ['errors' => ['Sikertelen mentés!']]);
+                    $data += ['errors' => ['Sikertelen mentés!']];
                 }
             }
             else
             {
-                $this->view('kepek', ['errors' => $errors]);
-                
+                $data += ['errors' => $errors];
             }
+
+            $data += ['photos' => Photo::all()];
+            $this->view('kepek', $data);
         }
         else
         {
