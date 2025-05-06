@@ -2,8 +2,8 @@ FROM caddy:latest
 
 COPY deployment/Caddyfile /etc/caddy/Caddyfile
 
-RUN addgroup -g 101 -S www-data; \
-    adduser -u 101 -D -S -G www-data www-data
+RUN addgroup -g 33 -S www-data; \
+    adduser -u 33 -D -S -G www-data www-data
 
 WORKDIR /var/www/html
 
